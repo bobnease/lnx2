@@ -1,0 +1,19 @@
+/* lnx2-index.css — Styles for the index (link display) page */
+
+.btn-social {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-social:hover {
+    background-color: RoyalBlue;
+}
+
+.hidden {
+    display: none;
+}

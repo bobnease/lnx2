@@ -1,0 +1,57 @@
+/* lnx2-config.css — Styles for the config (link builder) page */
+
+.btn-social {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-social:hover {
+    background-color: RoyalBlue;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Platform toggle tiles */
+label {
+    display: flex;
+    background-color: #ccc;
+    border: none;
+    color: white;
+    padding: 6px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    width: 100%;
+}
+
+label > .text {
+    display: block;
+    flex-grow: 1;
+    text-align: center;
+    height: 100%;
+    padding-top: 2px;
+    font-size: 12px;
+    color: #333;
+}
+
+label:hover,
+input:checked + label {
+    border: none;
+    background-color: DodgerBlue;
+}
+
+label:hover > .text,
+input:checked + label > .text {
+    color: white;
+}
+
+input:checked + label {
+    background-color: DodgerBlue;
+    width: 100%;
+}

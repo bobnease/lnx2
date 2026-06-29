@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Dropbox
+.dropbox
+.dropbox.attr
+
+# Editor artifacts
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
