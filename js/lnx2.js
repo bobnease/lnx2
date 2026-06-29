@@ -29,7 +29,7 @@ const useHex = true;  // use hexadecimal in the display code
 
 /* Platform verification — set this to your deployed Cloudflare Worker URL.
    Leave empty to disable verification (tiles will all appear in default state). */
-var verifyWorkerURL = 'https://lnx2-verify.yourname.workers.dev';
+var verifyWorkerURL = 'https://lnx2-verify.rfnease.workers.dev';
 
 /* HTML scaffolding */
 var htmlPrefixLinks     = '<div class="row"><div class="col-1 text-left">&nbsp;</div><div class="col-10 text-center">';
