@@ -38,8 +38,6 @@
 const CHECKABLE = {
 
   github:   h => ({ url: `https://github.com/${h}`,                           method: 'HEAD' }),
-  reddit:   h => ({ url: `https://www.reddit.com/user/${h}`,                  method: 'HEAD' }),
-  pinterest:h => ({ url: `https://www.pinterest.com/${h}/`,                   method: 'HEAD' }),
   vimeo:    h => ({ url: `https://vimeo.com/${h}`,                            method: 'HEAD' }),
   tumblr:   h => ({ url: `https://www.tumblr.com/${h}`,                       method: 'HEAD' }),
   substack: h => ({ url: `https://substack.com/@${h}`,                        method: 'HEAD' }),
@@ -53,7 +51,7 @@ const CHECKABLE = {
 // Platforms blocked by CORS / bot detection / JS rendering — no check attempted.
 const UNVERIFIABLE = [
   'instagram', 'x', 'facebook', 'tiktok', 'linkedin',
-  'threads', 'snapchat', 'telegram', 'website',
+  'threads', 'snapchat', 'telegram', 'website',' reddit', 'pintrest',
 ];
 
 // Platforms that need API keys — checked once keys are configured.
