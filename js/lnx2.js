@@ -22,17 +22,17 @@ var configURL = "config.html";
 var theStem = 'bobnease.github.io/lnx2/';
 
 /* Display layout */
-var maxIconCols  = 4;
-var iconColWidth = 3; // must equal 12 / maxIconCols
+var maxIconCols  = 4;   // kept for reference
+var iconColWidth = 3;   // kept for reference
 
 const useHex = true;  // use hexadecimal in the display code
 
 /* HTML scaffolding */
 var htmlPrefixLinks     = '<div class="row"><div class="col-1 text-left">&nbsp;</div><div class="col-10 text-center">';
 var htmlSuffixLinks     = '</div><div class="col-1 text-left">&nbsp;</div></div><div class="spacer10"></div>';
-var htmlIconGroupPrefix = '<div class="row m-1">';
-var htmlIconGroupSuffix = '<div class="spacer5"></div></div>';
-var htmlIconPrefix      = '<div class="col-' + iconColWidth + ' text-center px-1">';
+var htmlIconGroupPrefix = '<div class="row row-cols-4 row-cols-lg-6 m-1 g-2">';
+var htmlIconGroupSuffix = '</div><div class="spacer5"></div>';
+var htmlIconPrefix      = '<div class="col text-center px-1">';
 var htmlIconSuffix      = '</div>';
 
 
@@ -154,9 +154,7 @@ function getHTML(handle, showURL, links) {
 
     reorderLnxObjects();
 
-    var theHTML   = '';
-    var iconCount = 0;
-    var theRem    = 0;
+    var theHTML = '';
 
     for (let i = 0; i < lnxObjects.length; i++) {
         let obj      = lnxObjects[i];
@@ -176,9 +174,6 @@ function getHTML(handle, showURL, links) {
 
         } else {
             // Config page — render all platforms as toggle checkboxes
-            iconCount = i + 1;
-            theRem    = iconCount % maxIconCols;
-
             var theID      = 'chk_' + obj.index;
             var innerLabel = showURL
                 ? '<i class="' + obj.icon + '"></i>&nbsp;&nbsp;' + obj.tag + '<br>' + urlLink
@@ -188,17 +183,14 @@ function getHTML(handle, showURL, links) {
                      + '<label class="" for="' + theID + '"><span class="text">' + innerLabel + '</span></label>';
 
             thisHTML = htmlIconPrefix + thisHTML + htmlIconSuffix;
-
-            if (theRem === 1) { thisHTML = htmlIconGroupPrefix + thisHTML; }
-            if (theRem === 0) { thisHTML = thisHTML + htmlIconGroupSuffix; }
         }
 
         theHTML += thisHTML;
     }
 
-    // Close the last row if total platforms isn't a multiple of maxIconCols
-    if (!links && theRem !== 0) {
-        theHTML += htmlIconGroupSuffix;
+    // Wrap config icons in a single responsive row
+    if (!links) {
+        theHTML = htmlIconGroupPrefix + theHTML + htmlIconGroupSuffix;
     }
 
     return theHTML;

@@ -19,6 +19,15 @@ The platform list currently covers 18 platforms: Instagram, X, YouTube, TikTok, 
 
 **Monetization.** Several options are worth exploring as the service matures. Promoted placement — platforms paying to appear first in the link grid — is the most natural fit given the architecture, since display order is already controlled by a simple `order` field. Default-on placement (a platform appearing on all pages unless the user opts out) is a more aggressive variant. A JSON-driven config file served from a backend would enable real-time order adjustments across all user pages without a code deploy. Longer term, once platform verification is live, confirmed-account placement (showing a platform prominently because the handle is verified as active) adds a quality signal that could command premium pricing.
 
+## Folder Structure
+
+The project lives at `lnx2 claude/` with two top-level subfolders:
+
+- `project_notes/` — all non-code items: memos, specs, research, ATC logs, and any other reference material. This is where the ATC log and this memo live.
+- (repo root) — all deployable code files (`index.html`, `config.html`, `js/`, `css/`), served directly by GitHub Pages.
+
+New non-code items should be saved to `project_notes/`. Code changes go in the root and pushed to GitHub to deploy.
+
 ## Project ATC
 
-To coordinate ongoing development, a dedicated foreman chat ("ATC") will serve as the running log for this project — tracking what has been decided, what has been built, what is in progress, and what comes next. The ATC chat should be consulted at the start of each working session and updated at the end. It is the authoritative record of project state and serves as the briefing document for any AI collaborator picking up the thread.
+To coordinate ongoing development, a dedicated foreman chat ("ATC") will serve as the running log for this project — tracking what has been decided, what has been built, what is in progress, and what comes next. The ATC chat should be consulted at the start of each working session and updated at the end. It is the authoritative record of project state and serves as the briefing document for any AI collaborator picking up the thread. ATC logs and session summaries are saved to `project_notes/`.
