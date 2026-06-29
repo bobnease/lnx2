@@ -19,7 +19,7 @@ var configURL = "config.html";
 
 /* Base URL for generated links — update this for your deployment.
    e.g. "yourusername.github.io/lnx2/" for GitHub Pages */
-var theStem = 'www.lnx2.io/';
+var theStem = 'bobnease.github.io/lnx2/';
 
 /* Display layout */
 var maxIconCols  = 4;
