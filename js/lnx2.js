@@ -231,29 +231,19 @@ function renderConfigPage() {
 
 // ─── PLATFORM VERIFICATION ────────────────────────────────────────────────────
 
-var _verifyDebounceTimer  = null;
-var _lastVerifiedHandle   = '';
+var _verifyDebounceTimer = null;
 
-/* Called on each keystroke (via updateAll). Waits 800ms of inactivity before
-   firing — avoids a Worker call on every character typed. */
+/* Called on each keystroke via updateAll(). Waits 800ms of inactivity before
+   firing so we don't hit the Worker on every character typed. */
 function scheduleVerification(handle) {
     clearTimeout(_verifyDebounceTimer);
     if (!handle || handle.length < 2 || !verifyWorkerURL) return;
     _verifyDebounceTimer = setTimeout(function () { verifyHandle(handle); }, 800);
 }
 
-/* Calls the Worker and applies visual states to platform tiles.
-   Safe to call directly (e.g. from onblur) — skips if handle unchanged. */
+/* Calls the Worker and auto-selects any platforms where the handle was found. */
 async function verifyHandle(handle) {
     if (!handle || handle.length < 2 || !verifyWorkerURL) return;
-    if (handle === _lastVerifiedHandle) return;
-    _lastVerifiedHandle = handle;
-
-    // Show a subtle pulse on all verifiable tiles while the check runs
-    document.querySelectorAll('label[data-platform]').forEach(function (label) {
-        label.classList.remove('verify-confirmed', 'verify-notfound');
-        label.classList.add('verify-checking');
-    });
 
     try {
         var resp = await fetch(verifyWorkerURL + '?handle=' + encodeURIComponent(handle));
@@ -261,24 +251,27 @@ async function verifyHandle(handle) {
         var results = await resp.json();
         applyVerificationStates(results);
     } catch (e) {
-        // On failure, silently clear the checking state — no alarming UI change
-        document.querySelectorAll('label.verify-checking').forEach(function (label) {
-            label.classList.remove('verify-checking');
-        });
+        // Fail silently — no UI change on error
     }
 }
 
-/* Walks all platform tiles and applies the appropriate CSS class. */
+/* Auto-selects confirmed tiles, dims notfound tiles, updates the Step 3 link. */
 function applyVerificationStates(results) {
     document.querySelectorAll('label[data-platform]').forEach(function (label) {
         var platform = label.getAttribute('data-platform');
-        label.classList.remove('verify-checking', 'verify-confirmed', 'verify-notfound');
+        label.classList.remove('verify-checking', 'verify-notfound');
         if (!platform || !results[platform]) return;
         var state = results[platform];
-        if (state === 'confirmed') label.classList.add('verify-confirmed');
-        if (state === 'notfound')  label.classList.add('verify-notfound');
-        // 'unverified' → no class added; tile stays neutral (default gray)
+        if (state === 'confirmed') {
+            // Check the hidden checkbox so the tile turns blue and the link updates
+            var input = document.getElementById(label.getAttribute('for'));
+            if (input) input.checked = true;
+        }
+        if (state === 'notfound') label.classList.add('verify-notfound');
+        // 'unverified' → no change; tile stays neutral
     });
+    // Refresh the Step 3 link to reflect newly selected platforms
+    updateAll();
 }
 
 

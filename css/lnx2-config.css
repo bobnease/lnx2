@@ -67,20 +67,7 @@ input:checked + label {
  * the existing background-color / border rules above.
  */
 
-label.verify-confirmed {
-    outline: 2px solid #27ae60;
-    outline-offset: -2px;
-}
-
 label.verify-notfound {
     opacity: 0.4;
 }
 
-label.verify-checking {
-    animation: lnx2-pulse 1.2s ease-in-out infinite;
-}
-
-@keyframes lnx2-pulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.55; }
-}
