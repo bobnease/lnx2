@@ -13,7 +13,7 @@ The platform list currently covers 18 platforms: Instagram, X, YouTube, TikTok, 
 
 ## Next Steps
 
-**Look & feel.** The current UI is functional but minimal. Priorities include refining the button and icon grid layout, improving mobile presentation, and establishing a visual identity for the service.
+**Look & feel.** ~~Done (2026-06-29).~~ Core desktop layout shipped. Further visual identity work (typography, color palette, branding) remains open if desired.
 
 **Automatic platform verification.** The original vision included a step where, after a user enters their handle, the service automatically checks which platforms have an account with that handle — and presents only confirmed platforms for selection. A prototype of this using the Google Custom Search API exists in `search.html` but was never integrated. This feature would significantly improve the user experience and is the logical next major build. It requires either a search API integration or direct platform API calls, and would need a lightweight backend or serverless function to keep API keys off the client.
 

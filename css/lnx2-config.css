@@ -55,3 +55,32 @@ input:checked + label {
     background-color: DodgerBlue;
     width: 100%;
 }
+
+
+/* ── Platform verification states ───────────────────────────────────────────
+ *
+ * verify-confirmed  — handle found on this platform (green outline)
+ * verify-notfound   — handle not found (dimmed; user can still select it)
+ * verify-checking   — request in flight (subtle pulse)
+ *
+ * Using outline rather than border so these states don't interfere with
+ * the existing background-color / border rules above.
+ */
+
+label.verify-confirmed {
+    outline: 2px solid #27ae60;
+    outline-offset: -2px;
+}
+
+label.verify-notfound {
+    opacity: 0.4;
+}
+
+label.verify-checking {
+    animation: lnx2-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes lnx2-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.55; }
+}
